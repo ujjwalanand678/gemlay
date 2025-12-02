@@ -7,7 +7,7 @@ const CardButton = ({ onClick }) => {
       className="
         w-full py-3 mt-3 rounded-full text-white 
         flex items-center justify-center gap-2 font-medium text-sm
-        bg-linear-to-r from-[#0DB292] to-[#004E40]
+        bg-radial from-[#00AB63] to-[#1B3536]
         hover:opacity-90 transition
       "
     >
