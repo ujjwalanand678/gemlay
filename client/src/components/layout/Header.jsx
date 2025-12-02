@@ -26,16 +26,16 @@ const Header = () => {
       {/* TOP BAR */}
       <div className="w-full bg-[#004545] text-[11px] py-2 flex justify-between px-6 md:px-8 tracking-wide">
         <div className="hidden md:flex items-center gap-6 ms-40">
-          <span className="flex items-center gap-2 font-semibold ">
+          <span className="flex items-center gap-2 font-semibold me-60 ">
             ORDER TRACKING
             <span className="text-sm opacity-80">
               <FaTruckFast />
             </span>
           </span>
 
-          <span >
+          <span>
             Refer and earn extra discount{" "}
-            <a href="#" className="text-blue-200 underline">
+            <a href="#" className="text-blue-200 underline ">
               Click here...
             </a>
           </span>
@@ -53,52 +53,66 @@ const Header = () => {
 
       {/* MAIN ROW */}
       <div className="flex items-center justify-between py-4 px-5 md:px-10">
-        {/* LEFT: Mobile Menu + Logo */}
-        <div className="flex items-center gap-3">
-          {/* Hamburger (Mobile Only) */}
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="text-3xl md:hidden text-[#AEECE5]"
-          >
-            <HiMenuAlt3 />
-          </button>
+        {/* LEFT GROUP: Mobile Menu + Logo + Search */}
+        <div className="flex items-center gap-12">
+          {/* 1. Mobile Menu & Logo Wrapper */}
+          <div className="flex items-center gap-3 shrink-0">
+            {/* Hamburger (Mobile Only) */}
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="text-3xl md:hidden text-[#AEECE5] focus:outline-none"
+            >
+              <HiMenuAlt3 />
+            </button>
 
-          {/* LOGO */}
-          <div className="flex items-center gap-3 select-none">
-            <img src={logo} alt="Gemlay Logo" className="h-[37.45px] w-[45px] opacity-80" />
-            <div className="leading-tight hidden md:block text-center ">
-              <p className="text-[16px] font-semibold opacity-90 tracking-wide mb-1">
-                GEMLAY
-              </p>
-              <p className="text-[5px] opacity-70 -mt-1">Pure Diamond Elegance</p>
+            {/* LOGO */}
+            <div className="flex items-center gap-3 select-none cursor-pointer">
+              <img
+                src={logo}
+                alt="Gemlay Logo"
+                className="h-[37.45px] w-[45px] opacity-80"
+              />
+              <div className="hidden md:block text-center leading-none">
+                <p className="text-[16px] font-semibold opacity-90 tracking-wide mb-1">
+                  GEMLAY
+                </p>
+                <p className="text-[5px] opacity-70 mt-0.5">
+                  Pure Diamond Elegance
+                </p>
+              </div>
             </div>
           </div>
+
+          {/* 2. SEARCH BAR (Now part of the Left Group) */}
+          {/* Added ml-4 or just rely on parent gap-12 */}
+          <div className="hidden md:block w-[472px]">
+            <Search placeholder="Slim Sparkle Diamond Ring" />
+          </div>
         </div>
 
-        {/* CENTER: Desktop Search */}
-        <div className="hidden md:block w-[472px] h-9">
-          <Search placeholder="Slim Sparkle Diamond Ring" />
-        </div>
+        {/* RIGHT GROUP: Icons */}
+        <div className="flex items-center gap-6 text-xl text-[#AEECE5] shrink-0">
+          <button className="hidden md:block hover:text-teal-300 transition-colors">
+            <FaRegClock />
+          </button>
 
-        {/* RIGHT ICONS */}
-        <div className="flex items-center gap-6 text-xl text-[#AEECE5]">
-          <FaRegClock className="cursor-pointer hidden md:block" />
-
-          <div className="relative cursor-pointer">
+          <button className="relative hover:text-teal-300 transition-colors">
             <AiOutlineShoppingCart />
-            <span className="absolute -top-2 -right-2 bg-teal-400 text-black text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
+            <span className="absolute -top-2 -right-2 bg-teal-400 text-black text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
               1
             </span>
-          </div>
+          </button>
 
-          <div className="relative cursor-pointer">
+          <button className="relative hover:text-teal-300 transition-colors">
             <AiOutlineHeart />
-            <span className="absolute -top-2 -right-2 bg-teal-400 text-black text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
+            <span className="absolute -top-2 -right-2 bg-teal-400 text-black text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
               1
             </span>
-          </div>
+          </button>
 
-          <AiOutlineUser className="cursor-pointer" />
+          <button className="hover:text-teal-300 transition-colors">
+            <AiOutlineUser />
+          </button>
         </div>
       </div>
 
@@ -113,31 +127,47 @@ const Header = () => {
           to="/new-arrivals"
           className="flex gap-1 px-4 py-1 border border-teal-300 rounded-full text-teal-200 font-medium hover:bg-teal-300/10 transition "
         >
-         <img src={arrival} alt="arrival" className="w-[20px] h-[19px]" /> New Arrivals
+          <img src={arrival} alt="arrival" className="w-[20px] h-[19px]" /> New
+          Arrivals
         </Link>
 
         <Link to="/rings" className="flex gap-1 hover:text-white transition">
-          <img src={rings} alt="rings" className="w-[17px] h-[17px]" />Rings
+          <img src={rings} alt="rings" className="w-[17px] h-[17px]" />
+          Rings
         </Link>
 
         <Link to="/earrings" className="flex gap-1 hover:text-white transition">
-          <img src={Earrings} alt="Earrings" className="w-[17px] h-[17px]" />Earrings
+          <img src={Earrings} alt="Earrings" className="w-[17px] h-[17px]" />
+          Earrings
         </Link>
 
         <Link to="/pendants" className="flex gap-1 hover:text-white transition">
-          <img src={pendent} alt="pendent" className="w-[17px] h-[17px]" />Pendants
+          <img src={pendent} alt="pendent" className="w-[17px] h-[17px]" />
+          Pendants
         </Link>
 
-        <Link to="/bangles-bracelets" className="flex gap-1 hover:text-white transition">
-          <img src={bangles} alt="bangles" className="w-[17px] h-[17px]" />Bangles And Bracelets
+        <Link
+          to="/bangles-bracelets"
+          className="flex gap-1 hover:text-white transition"
+        >
+          <img src={bangles} alt="bangles" className="w-[17px] h-[17px]" />
+          Bangles And Bracelets
         </Link>
 
-        <Link to="/gold-coins-bars" className="flex gap-1 hover:text-white transition">
-          <img src={gold} alt="gold" className="w-[17px] h-[17px]" />Gold Coin & Bars
+        <Link
+          to="/gold-coins-bars"
+          className="flex gap-1 hover:text-white transition"
+        >
+          <img src={gold} alt="gold" className="w-[17px] h-[17px]" />
+          Gold Coin & Bars
         </Link>
 
-        <Link to="/all-jewellery" className="flex gap-1 item-center hover:text-white transition">
-          <img src={all} alt="all" className="w-[17px] h-[17px]" />All Jewellery
+        <Link
+          to="/all-jewellery"
+          className="flex gap-1 item-center hover:text-white transition"
+        >
+          <img src={all} alt="all" className="w-[17px] h-[17px]" />
+          All Jewellery
         </Link>
 
         {/* Right-side items */}
@@ -146,9 +176,9 @@ const Header = () => {
 
           <Link
             to="/jsp-plan"
-            className="border border-teal-300 px-4 py-1 rounded-full text-teal-200 hover:bg-teal-300/10 transition"
+            className="border border-teal-300 px-4 py-1 rounded-full"
           >
-            JSP (10+1 Monthly Plan)
+           <span className="font-bold text-[#E2B870]">JSP</span> (10+1 Monthly Plan)
           </Link>
         </div>
       </nav>

@@ -5,7 +5,7 @@ const Search = ({ placeholder }) => {
   return (
     <div
       className="
-        flex items-center 
+        flex items-start 
         bg-[#161B1F] 
         border border-[#2E6D6A] 
         rounded-full 

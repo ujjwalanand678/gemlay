@@ -1,12 +1,11 @@
 import { CiHeart } from "react-icons/ci";
-import { HiOutlineQrCode } from "react-icons/hi2";
 import CardButton from "./CardButton.jsx";
 import bestsellers from "../../assets/logo/bestsellers.png";
 import { PiImagesSquareThin } from "react-icons/pi";
 
 const ProductCard = ({ image, price, oldPrice, title, discountText }) => {
   return (
-    <div className="w-full max-w-[270px] mx-auto">
+    <div className="w-full max-w-[270px] ">
 
       {/* TOP WHITE ROUNDED BOX */}
       <div className=" bg-white rounded-2xl border-[#E1E1E1] p-4 shadow-sm">
@@ -18,12 +17,12 @@ const ProductCard = ({ image, price, oldPrice, title, discountText }) => {
         </div>
 
         {/* Product Image */}
-        <div className="mt-2 flex justify-center">
-          <img src={image} alt={title} className="w-[140px] md:w-[140px] lg:w-[220px] object-contain" />
+        <div className="flex justify-center">
+          <img src={image} alt={title} className="w-[140px] md:w-[140px] lg:w-[200px] object-contain" />
         </div>
 
         {/* Color dots + QR */}
-        <div className="flex items-center justify-between mt-3 px-2">
+        <div className="flex items-center justify-between px-2">
   
   {/* Centered Color Dots */}
   <div className="flex-1 flex justify-center">
@@ -42,7 +41,7 @@ const ProductCard = ({ image, price, oldPrice, title, discountText }) => {
       </div>
 
       {/* PRICE + TEXT AREA — OUTSIDE the box */}
-      <div className="mt-3 px-1">
+      <div className="mt-0.5 px-1">
 
         <p className="text-[18px] font-semibold text-[#555555]">
           ₹{price}
@@ -51,19 +50,19 @@ const ProductCard = ({ image, price, oldPrice, title, discountText }) => {
           </span>
         </p>
 
-        <p className="text-[#555555] text-[13px] font-semibold mt-1">
+        <p className="text-[#555555] text-[13px] font-semibold ">
           {title}
         </p>
 
-        <p className="text-[#007A64] font-semibold text-[13px] mt-1">
+        <p className="text-[#007A64] font-semibold text-[13px] ">
           {discountText}
         </p>
       </div>
 
-      {/* BUY BUTTON — OUTSIDE the box */}
-      <div className="mt-4">
+      {/* BUY BUTTON */}
+      
         <CardButton />
-      </div>
+      
     </div>
   );
 };
