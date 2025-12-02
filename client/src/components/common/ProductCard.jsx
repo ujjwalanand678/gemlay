@@ -9,7 +9,7 @@ const ProductCard = ({ image, price, oldPrice, title, discountText }) => {
     <div className="w-full max-w-[300px] mx-auto">
 
       {/* TOP WHITE ROUNDED BOX */}
-      <div className="bg-white rounded-2xl border-[#E1E1E1] p-4 shadow-sm">
+      <div className=" bg-white rounded-2xl border-[#E1E1E1] p-4 shadow-sm">
 
         {/* Top Row */}
         <div className="flex justify-between items-center mb-1">
@@ -19,7 +19,7 @@ const ProductCard = ({ image, price, oldPrice, title, discountText }) => {
 
         {/* Product Image */}
         <div className="mt-2 flex justify-center">
-          <img src={image} alt={title} className="h-40 object-contain" />
+          <img src={image} alt={title} className="w-[220px]  object-contain" />
         </div>
 
         {/* Color dots + QR */}
@@ -44,18 +44,18 @@ const ProductCard = ({ image, price, oldPrice, title, discountText }) => {
       {/* PRICE + TEXT AREA — OUTSIDE the box */}
       <div className="mt-3 px-1">
 
-        <p className="text-[22px] font-semibold text-gray-900">
+        <p className="text-[18px] font-semibold text-[#555555]">
           ₹{price}
-          <span className="line-through text-gray-400 text-[14px] ml-2">
+          <span className="line-through text-[#8E8E8E] font-medium text-[13px] ml-2">
             ₹{oldPrice}
           </span>
         </p>
 
-        <p className="text-gray-700 text-[15px] font-medium mt-1">
+        <p className="text-[#555555] text-[13px] font-semibold mt-1">
           {title}
         </p>
 
-        <p className="text-[#0DB292] font-semibold text-[14px] underline mt-1">
+        <p className="text-[#007A64] font-semibold text-[13px] mt-1">
           {discountText}
         </p>
       </div>
