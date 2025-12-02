@@ -1,17 +1,17 @@
-import { FiShoppingBag } from "react-icons/fi";
+import shopping from "../../assets/logo/shopping.svg";
 
 const CardButton = ({ onClick }) => {
   return (
     <button
       onClick={onClick}
       className="
-        w-full py-3 mt-3 rounded-full text-white 
-        flex items-center justify-center gap-2 font-medium text-sm
-        bg-radial from-[#00AB63] to-[#1B3536]
+        w-full h-[35px] py-3 mt-3 rounded-full text-white 
+        flex items-center justify-center gap-2 text-[12px]
+        bg-linear-to-r from-[#009E7F] to-[#00382D]
         hover:opacity-90 transition
       "
     >
-      <FiShoppingBag size={18} />
+      <img src={shopping} alt="" />
       BUY NOW
     </button>
   );
