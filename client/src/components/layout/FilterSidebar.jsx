@@ -143,7 +143,7 @@ const FilterSidebar = () => {
       </Section>
 
       {/* MORE FILTERS BUTTON */}
-      <button className="w-full mt-4 py-2 text-white rounded-md bg-radial from-[#00AB63] to-[#1B3536]">
+      <button className="cursor-pointer w-full mt-4 py-2 text-white rounded-md bg-radial from-[#00AB63] to-[#1B3536]">
         More Filters
       </button>
     </div>

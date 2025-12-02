@@ -1,73 +1,92 @@
 import { useState } from "react";
-import { FiChevronDown } from "react-icons/fi";
+import { FiChevronDown, FiFilter } from "react-icons/fi";
 
 const CategoryTabs = () => {
   const [activeTab, setActiveTab] = useState("all");
 
   return (
-    <div className="w-full border-y bg-white py-4 px-6 md:px-10">
+    <div className="w-full border-y bg-white py-4 px-4 md:px-10">
+      <div className="max-w-7xl mx-auto flex items-center justify-between relative">
 
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        {/* ----------- MOBILE LEFT: FILTERS ----------- */}
+        <div className="flex items-center gap-2 md:hidden">
+          <FiFilter className="text-xl text-gray-700" />
+          <span className="font-medium text-sm text-gray-700">Filters</span>
+          <span className="text-[#00A883] font-semibold text-sm">4</span>
+        </div>
 
-        {/* LEFT TABS */}
-        <div className="flex items-center gap-6 text-[13px]">
-
-          {/* ACTIVE TAB */}
+        {/* ----------- MOBILE CENTER: ALL RINGS PILL ----------- */}
+        <div className="absolute left-1/2 -translate-x-1/2 md:hidden">
           <button
             onClick={() => setActiveTab("all")}
-            className={`
-              px-5 py-1.5 rounded-full font-medium 
-              ${activeTab === "all"
-                ? "bg-radial from-[#00AB63] to-[#1B3536] text-white shadow"
-                : "text-gray-600 hover:text-black"}
-            `}
+            className="px-5 py-1.5 rounded-full bg-gradient-to-r from-[#12B98E] to-[#045E4F] text-white font-medium text-sm shadow"
           >
-            All Rings
-          </button>
-
-          <button
-            onClick={() => setActiveTab("new")}
-            className={`hover:text-black ${activeTab === "new" ? "font-semibold" : "text-gray-600"}`}
-          >
-            New In
-          </button>
-
-          <button
-            onClick={() => setActiveTab("today")}
-            className={`hover:text-black ${activeTab === "today" ? "font-semibold" : "text-gray-600"}`}
-          >
-            Today’s Specials
-          </button>
-
-          <button
-            onClick={() => setActiveTab("best")}
-            className={`hover:text-black ${activeTab === "best" ? "font-semibold" : "text-gray-600"}`}
-          >
-            Best Sellers
+            All Rings <FiChevronDown className="inline ml-1 text-sm" />
           </button>
         </div>
 
-        {/* RIGHT FILTERS */}
-        <div className="flex items-center gap-6 text-sm text-gray-600">
+        {/* ----------- MOBILE RIGHT: SORT ----------- */}
+        <div className="md:hidden flex items-center gap-1 text-sm text-gray-600">
+          Sort By: Relevance <FiChevronDown />
+        </div>
 
-          {/* Designs in store */}
-          <button className="hover:text-black">
-            Designs in store
-          </button>
+        {/* ----------- DESKTOP CONTENT ----------- */}
+        <div className="hidden md:flex items-center justify-between w-full">
+          
+          {/* LEFT: TABS */}
+          <div className="flex items-center gap-6 text-[14px] text-gray-600">
 
-          {/* Ready to Ship */}
-          <button className="
-            px-4 py-1 border border-teal-400 rounded-full
-            text-teal-600 font-medium hover:bg-teal-50 transition
-          ">
-            Ready to Ship
-          </button>
+            {/* All Rings active pill */}
+            <button
+              onClick={() => setActiveTab("all")}
+              className={`px-5 py-1.5 rounded-full font-medium
+                ${activeTab === "all"
+                  ? "bg-gradient-to-r from-[#12B98E] to-[#045E4F] text-white shadow"
+                  : "hover:text-black"}
+              `}
+            >
+              All Rings
+            </button>
 
-          {/* Sort Dropdown */}
-          <div className="flex items-center gap-1 cursor-pointer hover:text-black">
-            <span>Sort By: Relevance</span>
-            <FiChevronDown />
+            <button
+              onClick={() => setActiveTab("new")}
+              className={`${activeTab === "new" ? "font-semibold text-black" : "hover:text-black"}`}
+            >
+              New In
+            </button>
+
+            <button
+              onClick={() => setActiveTab("today")}
+              className={`${activeTab === "today" ? "font-semibold text-black" : "hover:text-black"}`}
+            >
+              Today’s Specials
+            </button>
+
+            <button
+              onClick={() => setActiveTab("best")}
+              className={`${activeTab === "best" ? "font-semibold text-black" : "hover:text-black"}`}
+            >
+              Best Sellers
+            </button>
           </div>
+
+          {/* RIGHT: DESKTOP FILTER OPTIONS */}
+          <div className="flex items-center gap-6 text-sm text-gray-600">
+            
+            <button className="hover:text-black">
+              Designs in store
+            </button>
+
+            <button className="px-4 py-1 border border-[#11a98f] text-[#0b7c63] rounded-full hover:bg-[#11a98f]/10 transition">
+              Ready to Ship
+            </button>
+
+            <button className="flex items-center gap-1 hover:text-black">
+              Sort By: Relevance <FiChevronDown />
+            </button>
+
+          </div>
+
         </div>
       </div>
     </div>
