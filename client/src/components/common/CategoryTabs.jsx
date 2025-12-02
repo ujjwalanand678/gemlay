@@ -9,25 +9,25 @@ const CategoryTabs = () => {
       <div className="max-w-7xl mx-auto flex items-center justify-between relative">
 
         {/* ----------- MOBILE LEFT: FILTERS ----------- */}
-        <div className="flex items-center gap-2 md:hidden">
-          <FiFilter className="text-xl text-gray-700" />
-          <span className="font-medium text-sm text-gray-700">Filters</span>
-          <span className="text-[#00A883] font-semibold text-sm">4</span>
+        <div className="flex items-center gap-0.5 md:hidden">
+          <FiFilter size={12} className=" text-gray-700" />
+          <span className="font-medium text-[11px] text-gray-700">Filters</span>
+          <span className="text-[#00A883] font-bold text-[12px]">4</span>
         </div>
 
         {/* ----------- MOBILE CENTER: ALL RINGS PILL ----------- */}
         <div className="absolute left-1/2 -translate-x-1/2 md:hidden">
           <button
             onClick={() => setActiveTab("all")}
-            className="px-5 py-1.5 rounded-full bg-gradient-to-r from-[#12B98E] to-[#045E4F] text-white font-medium text-sm shadow"
+            className="me-5 text-[12px] px-2 py-1 rounded-full bg-radial from-[#12B98E] to-[#045E4F] text-white font-medium text-sm shadow"
           >
-            All Rings <FiChevronDown className="inline ml-1 text-sm" />
+            All Rings <FiChevronDown  className="inline items-center font-bold" />
           </button>
         </div>
 
         {/* ----------- MOBILE RIGHT: SORT ----------- */}
-        <div className="md:hidden flex items-center gap-1 text-sm text-gray-600">
-          Sort By: Relevance <FiChevronDown />
+        <div className="md:hidden flex items-center gap-1 text-[10px] font-semibold text-gray-600">
+          Sort By: Relevance <FiChevronDown  className="inline items-center font-bold" />
         </div>
 
         {/* ----------- DESKTOP CONTENT ----------- */}
@@ -41,7 +41,7 @@ const CategoryTabs = () => {
               onClick={() => setActiveTab("all")}
               className={`px-5 py-1.5 rounded-full font-medium
                 ${activeTab === "all"
-                  ? "bg-gradient-to-r from-[#12B98E] to-[#045E4F] text-white shadow"
+                  ? "bg-radial from-[#12B98E] to-[#045E4F] text-white shadow"
                   : "hover:text-black"}
               `}
             >

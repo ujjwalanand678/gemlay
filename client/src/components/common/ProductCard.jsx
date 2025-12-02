@@ -6,7 +6,7 @@ import { PiImagesSquareThin } from "react-icons/pi";
 
 const ProductCard = ({ image, price, oldPrice, title, discountText }) => {
   return (
-    <div className="w-full max-w-[300px] mx-auto">
+    <div className="w-full max-w-[270px] mx-auto">
 
       {/* TOP WHITE ROUNDED BOX */}
       <div className=" bg-white rounded-2xl border-[#E1E1E1] p-4 shadow-sm">
@@ -19,7 +19,7 @@ const ProductCard = ({ image, price, oldPrice, title, discountText }) => {
 
         {/* Product Image */}
         <div className="mt-2 flex justify-center">
-          <img src={image} alt={title} className="w-[220px]  object-contain" />
+          <img src={image} alt={title} className="w-[140px] md:w-[140px] lg:w-[220px] object-contain" />
         </div>
 
         {/* Color dots + QR */}

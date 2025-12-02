@@ -7,7 +7,7 @@ const Section = ({ title, children }) => (
       {title}
     </h3>
     <div className="space-y-2">{children}</div>
-    <div className="border-b mt-4"></div>
+    <div className="border border-gray-200 mt-4"></div>
   </div>
 );
 
@@ -19,7 +19,7 @@ const FilterSidebar = () => {
   };
 
   return (
-    <div className="w-full md:w-64 bg-white border rounded-lg p-5 text-sm">
+    <div className="w-full md:w-64 bg-white border border-gray-200 rounded-lg p-5 text-sm">
 
       {/* FILTERS TITLE */}
       <div className="flex items-center justify-between mb-4">
