@@ -1,8 +1,11 @@
 import User from "../models/User.model.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import cloudinary from "../utils/cloudinary.js";
-import streamifier from "streamifier";
+
+// Helper - ensure JWT key exists
+if (!process.env.JWT_TOKEN_KEY) {
+  console.warn("JWT_TOKEN_KEY not set in env. Tokens will fail if not provided.");
+}
 
 // generate JWT token
 const createJwtToken = (user) => {
@@ -13,8 +16,7 @@ const createJwtToken = (user) => {
   );
 };
 
-//REGISTER USER
-
+// REGISTER USER
 export const userRegister = async (req, res) => {
   const { name, email, password, adminInviteToken } = req.body;
 
@@ -26,7 +28,7 @@ export const userRegister = async (req, res) => {
       });
     }
 
-    // check email
+    // Check existing email
     let userExists = await User.findOne({ email });
     if (userExists) {
       return res.status(400).json({
@@ -37,47 +39,19 @@ export const userRegister = async (req, res) => {
 
     // Determine admin role
     let role = "member";
-    if (
-      adminInviteToken &&
-      adminInviteToken === process.env.ADMIN_INVITE_TOKEN
-    ) {
+    if (adminInviteToken && adminInviteToken === process.env.ADMIN_INVITE_TOKEN) {
       role = "admin";
     }
 
     // Encrypt password
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    // CLOUDINARY UPLOAD (if profile image exists)
-    let profileImageUrl = null;
-    let profileImagePublicId = null;
-
-    if (req.file) {
-      const uploadResult = await new Promise((resolve, reject) => {
-        const uploadStream = cloudinary.uploader.upload_stream(
-          {
-            folder: "user-profiles",
-            resource_type: "image",
-            transformation: [{ width: 800, height: 800, crop: "limit" }],
-          },
-          (error, result) => (error ? reject(error) : resolve(result))
-        );
-
-        streamifier.createReadStream(req.file.buffer).pipe(uploadStream);
-      });
-
-      profileImageUrl = uploadResult.secure_url;
-      profileImagePublicId = uploadResult.public_id;
-    }
-
-    // Create user
     const user = new User({
       name,
       email,
       password: hashedPassword,
       role,
-      profileImageUrl,
-      profileImagePublicId,
+      profileImageUrl: null,
     });
 
     await user.save();
@@ -99,12 +73,15 @@ export const userRegister = async (req, res) => {
   }
 };
 
-//LOGIN USER
-
+// LOGIN USER
 export const userLogin = async (req, res) => {
   const { email, password } = req.body;
 
   try {
+    if (!email || !password) {
+      return res.status(400).json({ success: false, message: "Email and password required" });
+    }
+
     const user = await User.findOne({ email });
     if (!user)
       return res.status(400).json({
@@ -112,6 +89,16 @@ export const userLogin = async (req, res) => {
         message: "User is not registered",
       });
 
+    // If user was created via Google (no password)
+    if (!user.password) {
+      return res.status(400).json({
+        success: false,
+        message:
+          "This account was created using Google login. Please login using Google sign-in or reset your password.",
+      });
+    }
+
+    // Compare password
     const comparePassword = await bcrypt.compare(password, user.password);
     if (!comparePassword)
       return res.status(400).json({
@@ -137,7 +124,7 @@ export const userLogin = async (req, res) => {
   }
 };
 
-//GET PROFILE 
+// GET PROFILE
 export const getUserProfile = async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("-password");
@@ -145,5 +132,26 @@ export const getUserProfile = async (req, res) => {
     res.json(user);
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
+
+// Google OAuth callback handler (used in routes)
+// Passport attaches the authenticated user to req.user
+export const googleAuthCallback = async (req, res) => {
+  try {
+    const user = req.user;
+    if (!user) {
+      // fallback redirect
+      return res.redirect(`${process.env.CLIENT_URI.replace(/\/$/, "")}/auth/google/failure`);
+    }
+
+    const token = createJwtToken(user);
+
+    // Redirect to frontend with token as query param (you can choose other flows)
+    const redirectTo = `${process.env.CLIENT_URI.replace(/\/$/, "")}/auth/google/success?token=${token}`;
+    return res.redirect(redirectTo);
+  } catch (err) {
+    console.error("Google Callback Error:", err);
+    return res.redirect(`${process.env.CLIENT_URI.replace(/\/$/, "")}/auth/google/failure`);
   }
 };
