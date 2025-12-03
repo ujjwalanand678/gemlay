@@ -198,7 +198,7 @@ const Header = () => {
             to="/jsp-plan"
             className="border border-teal-300 px-4 py-1 rounded-full"
           >
-            <span className="font-bold text-[#E2B870]">JSP</span> (10+1 Plan)
+            <span className="font-bold text-[#E2B870]">JSP</span> (10+1 Plan Monthly Plan)
           </Link>
         </div>
       </nav>
