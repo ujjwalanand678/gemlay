@@ -1,6 +1,7 @@
 // src/pages/GoogleSuccess.jsx
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../utils/ConfigBaseUrl";
 
 const GoogleSuccess = () => {
   const navigate = useNavigate();
@@ -21,8 +22,8 @@ const GoogleSuccess = () => {
     // OPTIONAL: fetch the user's profile immediately so Header can read user object
     (async () => {
       try {
-        const server = import.meta.env.VITE_SERVER_URL || "http://localhost:3000";
-        const res = await fetch(`${server}/api/auth/profile`, {
+        
+        const res = await fetch(`${BASE_URL}/api/auth/profile`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (res.ok) {
