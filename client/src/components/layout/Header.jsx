@@ -133,21 +133,24 @@ const Header = () => {
           </button>
 
           {/* USER SECTION */}
-          {user ? (
-            <div className="flex items-center gap-2 text-sm">
-              <span className="hidden sm:block">{user.name || "User"}</span>
-              <button
-                onClick={handleLogout}
-                className="px-2 py-[3px] rounded bg-[#AEECE5] text-black font-medium text-xs hover:bg-teal-300"
-              >
-                Logout
-              </button>
-            </div>
-          ) : (
-            <button onClick={openAuth} className="hover:text-teal-300">
-              <AiOutlineUser />
-            </button>
-          )}
+    {/* USER SECTION */}
+{user ? (
+  <div className="flex items-center gap-2 text-[13px]">
+    <span>{user.name?.split(" ")[0] || "User"}</span>
+
+    <button
+      onClick={handleLogout}
+      className="text-xs bg-teal-300 text-black px-2 py-[2px] rounded hover:bg-teal-200"
+    >
+      Logout
+    </button>
+  </div>
+) : (
+  <button onClick={openAuth} className="hover:text-teal-300">
+    <AiOutlineUser />
+  </button>
+)}
+
         </div>
       </div>
 
@@ -225,9 +228,13 @@ const Header = () => {
           <Link to="/gold-coins-bars" className="hover:text-teal-300">Gold Coins & Bars</Link>
           <Link to="/all-jewellery" className="hover:text-teal-300">All Jewellery</Link>
 
-          <button onClick={openAuth} className="text-left hover:text-teal-300 mt-4">
-            {user ? "Logout" : "Login / Signup"}
-          </button>
+          <button
+  onClick={user ? handleLogout : openAuth}
+  className="text-left hover:text-teal-300 mt-4"
+>
+  {user ? "Logout" : "Login / Signup"}
+</button>
+
         </div>
       </div>
 
