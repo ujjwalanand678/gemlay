@@ -1,8 +1,8 @@
 import { Route , Routes} from "react-router-dom";
-import HomePage from "../pages/HomePage";
-import Login from "../pages/Auth/Login";
-import SignUp from "../pages/Auth/SignUp";
-import GoogleSuccess from "../pages/GoogleSuccess";
+import HomePage from "../pages/HomePage.jsx";
+import Login from "../pages/Auth/Login.jsx";
+import SignUp from "../pages/Auth/SignUp.jsx";
+import GoogleSuccess from "../pages/GoogleSuccess.jsx";
 
 const Router = () => {
   return (

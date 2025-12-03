@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import GoogleButton from "../../components/Auth/GoogleButton";
 import logo from "../../assets/logo/logo.png";
-import { BASE_URL } from "../../utils/ConfigBaseUrl";
+import { BASE_URL } from "../../utils/ConfigBaseUrl.jsx";
 
 const Login = () => {
   const [email, setEmail] = useState("");
