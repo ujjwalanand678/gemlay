@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import GoogleButton from "../../components/Auth/GoogleButton";
 import logo from "../../assets/logo/logo.png";
+import { BASE_URL } from "../../utils/ConfigBaseUrl";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -10,14 +11,14 @@ const SignUp = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const server = import.meta.env.VITE_SERVER_URL || "http://localhost:3000";
+  
 
   const handleSignup = async (e) => {
     e.preventDefault();
     setError("");
     setLoading(true);
     try {
-      const res = await fetch(`${server}/api/auth/register`, {
+      const res = await fetch(`${BASE_URL}/api/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password }),
