@@ -11,6 +11,7 @@ import Search from "../common/Search";
 import AuthModal from "../Auth/AuthModal"; // Popup modal
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import logo from "../../assets/logo/logo.png";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -81,7 +82,7 @@ const Header = () => {
               className="flex items-center gap-3 select-none cursor-pointer"
             >
               <img
-                src="/src/assets/logo/logo.png"
+                src={logo}
                 alt="Gemlay Logo"
                 className="h-[37px] w-[45px] opacity-80"
               />
