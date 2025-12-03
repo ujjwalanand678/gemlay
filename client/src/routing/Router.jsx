@@ -11,7 +11,7 @@ const Router = () => {
     <Route path="/login" element={<Login />} />
     <Route path="/signup" element={<SignUp />} />
     <Route path="/auth/google/success" element={<GoogleSuccess />} />
-<Route path="/auth/google/failure" element={<div>Google login failed</div>} />
+
 
   </Routes>
 );
