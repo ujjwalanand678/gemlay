@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import GoogleButton from "./GoogleButton";
+import { BASE_URL } from "../../utils/ConfigBaseUrl";
 
 const AuthModal = ({ open, onClose }) => {
   const [activeTab, setActiveTab] = useState("login");
@@ -17,14 +18,14 @@ const AuthModal = ({ open, onClose }) => {
 
   if (!open) return null;
 
-  const server = import.meta.env.VITE_SERVER_URL || "http://localhost:3000";
+
 
   const handleLogin = async (e) => {
     e?.preventDefault();
     setError("");
     setLoading(true);
     try {
-      const res = await fetch(`${server}/api/auth/login`, {
+      const res = await fetch(`${BASE_URL}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: loginEmail, password: loginPassword }),
@@ -51,7 +52,7 @@ const AuthModal = ({ open, onClose }) => {
     setError("");
     setLoading(true);
     try {
-      const res = await fetch(`${server}/api/auth/register`, {
+      const res = await fetch(`${BASE_URL}/api/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email: signupEmail, password: signupPassword }),

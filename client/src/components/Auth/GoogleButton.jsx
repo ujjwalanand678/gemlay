@@ -1,8 +1,10 @@
+import { BASE_URL } from "../../utils/ConfigBaseUrl";
+
 const GoogleButton = ({ text = "Continue with Google" }) => {
   const handleGoogleLogin = () => {
-    const server = import.meta.env.VITE_SERVER_URL || "http://localhost:3000";
+   
     // starts OAuth flow on backend
-    window.location.href = `${server}/api/auth/google`;
+    window.location.href = `${BASE_URL}/api/auth/google`;
   };
 
   return (
